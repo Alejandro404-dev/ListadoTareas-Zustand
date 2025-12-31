@@ -3,14 +3,15 @@ import Error from "./Error"
 import type { DraftTarea } from "../types"
 import { useTareaStore } from "../store"
 import { useEffect } from "react"
+import { toast } from "react-toastify"
 
 
 export default function FormularioTareas() {
 
-  const { agregarTarea, activarId, tareas } = useTareaStore()
+  const { agregarTarea, activarId, tareas, actualizarTarea } = useTareaStore()
 
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<DraftTarea>()
-
+// cuando cambia el activarId, llenamos el formulario con los datos de la tarea a editar
   useEffect(() => {
     if (activarId) {
       const activarTareas = tareas.filter(tarea => tarea.id === activarId)[0]
@@ -28,7 +29,14 @@ export default function FormularioTareas() {
 
   const registroTarea = (data: DraftTarea) => {
     console.log("Tarea registrada", data)
-    agregarTarea(data)
+
+    if (activarId) {
+      actualizarTarea(data)
+      toast.success('Tarea actualizada con éxito')
+    } else {
+      agregarTarea(data)
+      toast.success('Tarea agregada con éxito')
+    }
 
     reset()
   }

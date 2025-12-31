@@ -9,6 +9,7 @@ type TareaState = {
     agregarTarea: (data: DraftTarea) => void  // recibe data del formulario
     eliminarTarea: (id: Tarea['id']) => void
     obtenerTareaporId: (id: Tarea['id']) => void
+    actualizarTarea: (data: DraftTarea) => void
 }
 
 // función para crear una nueva tarea con un id único
@@ -49,7 +50,23 @@ export const useTareaStore = create<TareaState>()(
             set(() => ({
                 activarId: id
             }))
+        },
+
+        actualizarTarea: (data) => {
+            set((state) => ({
+                tareas: state.tareas.map((tarea) =>
+                    tarea.id === state.activarId ? { id: state.activarId, ...data } : tarea
+                ),
+                activarId: '',// resetear el id activo después de actualizar
+            }))
         }
-        
+
     })
-))
+    ))
+
+
+/*tarea en el listaTareas =>
+    editar =>
+    1 - envia el id en activar id / 2- envia la tarea a borrador/draft  (el borrador no lleva el id)  =>
+    una vez es editado y guardado el borrador => 
+    ActivarId y Draft se juntan y modifican la tarea en la lista de tareas */

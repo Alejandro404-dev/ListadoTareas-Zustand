@@ -1,5 +1,7 @@
+import { ToastContainer } from "react-toastify"
 import FormularioTarea from "./components/FormularioTarea"
 import ListaTareas from "./components/ListaTareas"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -7,8 +9,8 @@ function App() {
 
   return (
     <>
-      <div className="container mx-auto mt-20 bg-red-100 " >
-        <h1 className=" font-bold text-center md:w-2/3 md:mx-auto " >Mis Tareas</h1>
+      <div className="container mx-auto mt-20 bg-slate-200 shadow-lg " >
+        <h1 className=" font-bold text-2xl text-center md:w-2/3 md:mx-auto  " >Mis Tareas!</h1>
 
 
         <div className="mt-12 md:flex  " >
@@ -16,10 +18,8 @@ function App() {
           <FormularioTarea />
           <ListaTareas />
         </div>
-
-
-
       </div>
+      <ToastContainer />
 
     </>
   )

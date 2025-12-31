@@ -1,3 +1,4 @@
+import { toast } from "react-toastify"
 import { useTareaStore } from "../store"
 import type { Tarea } from "../types"
 
@@ -9,12 +10,14 @@ export default function ListaTareas() {
   console.log("tareas con id's en ListaTareas", tareas)
 
 const handleAccion = (accion: 'eliminar' | 'editar', tarea:Tarea) =>{
-  console.log(`${accion === 'eliminar' ? 'Eliminando ' : 'Editamos '} la tarea con id: `, tarea.id)
+  console.log(`${accion === 'eliminar' ? 'Eliminamos ' : 'Editamos '} la tarea con id: `, tarea.id)
 
   if (accion==='eliminar' ) {
-    eliminarTarea(tarea.id)
+    eliminarTarea(tarea.id); 
+    toast.error('Tarea eliminada con éxito')
   }if (accion=== 'editar') {
     obtenerTareaporId(tarea.id)
+    toast.info('Editando tarea')
     
   }
 }
