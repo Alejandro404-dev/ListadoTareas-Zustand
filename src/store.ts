@@ -4,7 +4,10 @@ import type { DraftTarea, Tarea } from "./types";
 
 type TareaState = {
     tareas: Tarea[]
+    activarId: Tarea['id']  //para almacenar el id de la tarea que se está editando
     agregarTarea: (data: DraftTarea) => void  // recibe data del formulario
+    eliminarTarea:(id: Tarea['id']) => void
+    obtenerTareaporId: (id: Tarea['id']) => void
 }
 
 // función para crear una nueva tarea con un id único
@@ -17,6 +20,7 @@ const crearTarea = (tarea: DraftTarea): Tarea => {
 // creación del store usando zustand
 export const useTareaStore = create<TareaState>((set) => ({
     tareas: [],
+    activarId: '',
     agregarTarea: (data) => {
         console.log("llega la data del formulario al store", data)
 
@@ -27,7 +31,24 @@ export const useTareaStore = create<TareaState>((set) => ({
                 nuevaTarea
             ]
         }))
+    },
+
+    eliminarTarea: (id) => {
+        console.log("el id que llega para eliminar la tarea es", id)
+
+        set((state) => ({
+            tareas: state.tareas.filter((tarea) => tarea.id !== id)
+        }))
+        
+    },
+
+    obtenerTareaporId: (id) => {
+        console.log("Verificamos que este llegando el id al store para editarlo", id)
     }
+
+
+
+
 
 
 
