@@ -2,18 +2,34 @@ import { useForm } from "react-hook-form"
 import Error from "./Error"
 import type { DraftTarea } from "../types"
 import { useTareaStore } from "../store"
+import { useEffect } from "react"
 
 
 export default function FormularioTareas() {
 
-  const {agregarTarea} = useTareaStore()
+  const { agregarTarea, activarId, tareas } = useTareaStore()
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm <DraftTarea>()
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<DraftTarea>()
+
+  useEffect(() => {
+    if (activarId) {
+      const activarTareas = tareas.filter(tarea => tarea.id === activarId)[0]
+      console.log("Tarea a editar encontrada en el useEffect del formulario", activarTareas)
+
+      setValue('tarea', activarTareas.tarea)
+      setValue('fecha', activarTareas.fecha)
+      setValue('descripcion', activarTareas.descripcion)
+
+    }
+
+  }, [activarId, tareas, setValue])
+
+
 
   const registroTarea = (data: DraftTarea) => {
-    console.log("Tarea registrada", data )
+    console.log("Tarea registrada", data)
     agregarTarea(data)
-    
+
     reset()
   }
 
