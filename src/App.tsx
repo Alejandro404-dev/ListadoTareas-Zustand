@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div className="container mx-auto mt-20 bg-red-200 " >
+      <div className="container mx-auto mt-20 bg-red-100 " >
         <h1 className=" font-bold text-center md:w-2/3 md:mx-auto " >Mis Tareas</h1>
 
 

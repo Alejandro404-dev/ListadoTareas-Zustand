@@ -8,11 +8,13 @@ export default function FormularioTareas() {
 
   const {agregarTarea} = useTareaStore()
 
-  const { register, handleSubmit, formState: { errors } } = useForm <DraftTarea>()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm <DraftTarea>()
 
   const registroTarea = (data: DraftTarea) => {
     console.log("Tarea registrada", data )
     agregarTarea(data)
+    
+    reset()
   }
 
 
