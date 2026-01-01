@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <div className="container mx-auto mt-20 bg-slate-200 shadow-lg " >
+      <div className="container mx-auto mt-20 bg-slate-500 shadow-lg " >
         <h1 className=" font-bold text-2xl text-center md:w-2/3 md:mx-auto  " >Mis Tareas!</h1>
 
 
