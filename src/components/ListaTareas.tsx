@@ -17,8 +17,7 @@ const handleAccion = (accion: 'eliminar' | 'editar', tarea:Tarea) =>{
     toast.error('Tarea eliminada con éxito')
   }if (accion=== 'editar') {
     obtenerTareaporId(tarea.id)
-    toast.info('Editando tarea')
-    
+    toast.info('Editando tarea')  
   }
 }
  
@@ -62,9 +61,9 @@ const handleAccion = (accion: 'eliminar' | 'editar', tarea:Tarea) =>{
           )}
         </div>
       ) : (
-        <div>
+        <div className="mt-20">
           <h2 className="text-center text-lg mt-5 font-black mb-10">No hay <span className="text-blue-800 font-bold">Tareas</span> registradas</h2>
-          <p className="text-center">Agrega tu primera tarea para que aparezca en este lugar</p>
+          <p className="text-center" >Agrega tu primera tarea para que aparezca en este lugar</p>
         </div>
 
       )}

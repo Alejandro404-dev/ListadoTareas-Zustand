@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid"; // para generar IDs únicos
 import type { DraftTarea, Tarea } from "./types";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 
 type TareaState = {
     tareas: Tarea[]
@@ -21,7 +21,8 @@ const crearTarea = (tarea: DraftTarea): Tarea => {
 }
 // creación del store usando zustand
 export const useTareaStore = create<TareaState>()(
-    devtools((set) => ({
+    devtools( 
+        persist((set) => ({
         tareas: [],
         activarId: '',
         agregarTarea: (data) => {
@@ -61,6 +62,8 @@ export const useTareaStore = create<TareaState>()(
             }))
         }
 
+    }), {
+        name: "tarea-storage", // nombre del almacenamiento
     })
     ))
 
